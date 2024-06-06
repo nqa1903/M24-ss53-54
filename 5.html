@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function isPrimeWithPromise(number) {
+        return new Promise((resolve, reject) => {
+          if (typeof number !== "number" || !Number.isInteger(number)) {
+            return reject("Tham số truyền vào phải là số nguyên.");
+          }
+          if (number <= 1) {
+            return resolve(false);
+          }
+          if (number === 2) {
+            return resolve(true);
+          }
+          for (let i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i === 0) {
+              return resolve(false);
+            }
+          }
+          return resolve(true);
+        });
+      }
+
+      isPrimeWithPromise(7)
+        .then((result) => {
+          console.log("7 có phải là số nguyên tố không?", result);
+        })
+        .catch((error) => {
+          console.error("Lỗi:", error);
+        });
+
+      isPrimeWithPromise(10)
+        .then((result) => {
+          console.log("10 có phải là số nguyên tố không?", result);
+        })
+        .catch((error) => {
+          console.error("Lỗi:", error);
+        });
+      isPrimeWithPromise("7")
+        .then((result) => {
+          console.log("7 có phải là số nguyên tố không?", result);
+        })
+        .catch((error) => {
+          console.error("Lỗi:", error);
+        });
+    </script>
+  </body>
+</html>

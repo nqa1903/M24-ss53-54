@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      let arr = [1, 2, 3, 4, 5];
+      function processArray(callback, delay) {
+        for (let i = 0; i < arr.length; i++) {
+          setTimeout(() => {
+            callback(arr[i]);
+          }, (i + 1) * 1000);
+        }
+      }
+      processArray(function (value) {
+        console.log(value);
+      }, 1000);
+    </script>
+  </body>
+</html>

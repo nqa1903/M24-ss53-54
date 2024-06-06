@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      function divideNumbers(dividend, divisor) {
+        try {
+          if (typeof dividend !== "number" || typeof divisor !== "number") {
+            throw new TypeError("Cả hai tham số phải là kiểu số.");
+          }
+          if (divisor === 0) {
+            throw new Error("Không thể chia cho 0.");
+          }
+          let result = dividend / divisor;
+          return result;
+        } catch (error) {
+          return error.message;
+        } finally {
+          console.log("Kết thúc hàm divideNumbers.");
+        }
+      }
+
+      let dividend = 10;
+      let divisor = 2;
+      console.log(divideNumbers(dividend, divisor)); 
+      divisor = 0;
+      console.log(divideNumbers(dividend, divisor));
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      const tasks = [
+        {
+          name: "Task 1",
+          time: 1000,
+        },
+        {
+          name: "Task 2",
+          time: 1500,
+        },
+        {
+          name: "Task 3",
+          time: 2000,
+        },
+      ];
+      function executeTask(task, callback) {
+        setTimeout(() => {
+          console.log(task.name + " đã hoàn thành.");
+          callback();
+        }, task.time);
+      }
+      function executeTasks(tasks, index) {
+        if (index < tasks.length) {
+          executeTask(tasks[index], () => {
+            executeTasks(tasks, index + 1);
+          });
+        } else {
+          console.log("Tất cả các nhiệm vụ đã hoàn thành.");
+        }
+      }
+      executeTasks(tasks, 0);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        Đồng bộ và  bất đồng bộ
+        Đồng bộ : S
+        Bất đồng bộ
+        JS là 1 ngôn ngữ đơn luồng , chỉ chạy 1 luồng duy nhất (chạy từ trái qua phải và từ trên xuống)
+        Q/A : tại sao JS không đa luồng mà chỉ đơn luồng ? 
+        Khi đa luồng cái luồng nó sẽ chia sẻ tài nguyên lẫn nhau , ảnh hưởng đến logic code lẫn nhau cho nên tư duy bàn đầu của JS là đơn luồng (single thread)
+        khi gặp các tác vụ cần thời gian xử lí (chọc vào database , gửi request lên server , đọc file , ghi file trong NodeJS) thì JS sẽ không đợi các tác vụ này xử lí xong mới đến các tác vụ khác
+        3 cách để guaur quyết các tác vụ bất đồng bộ
+        1. callback : Là hàm được truyền vào làm đối số của hàm khác , sinh ra đầu 
+        2. promise : ES6(2015)
+        3. 
+     -->
+    <script>
+        setTimeout(() => {
+            console.log("Time out");
+        }, 1000);
+        // Web API
+        console.log("Chạy trước Web API");
+    </script>
+    <script>
+        let std;
+        function xinSdt(callback) {
+            console.log("ABC");
+            console.log("XYZ");
+            setTimeout(() =>{
+                sdt = 123456;
+                callback(sdt)
+            },3000);
+        }
+        xinSdt(goiKhiCoSdt);
+        //dùng callback để giải quyết vấn đề
+        // tạo hàm khi nào có số thì mới gọi
+        function goiKhiCoSdt(sdt){
+            console.log("SDT : " , sdt );
+        }
+    </script>
+    <script>
+        //hàm find , findIndex , filter nhận về tham số callback
+
+        //hàm map
+        let arr = [1,2,3,4,5];
+        let newArr = arr.map((item) => item*2);
+        console.log(newArr);
+        // tạo 1 hàm như hàm map 
+        function customMap(arr , callback){
+            let resultArr = [];
+            for (const value of arr) {
+                resultArr.push(callback(value));
+            }
+            return resultArr;
+        }
+        customMap(arr , (item) => item*2);
+        console.log(customMap(arr , (item) => item*2));
+    </script>
+</body>
+</html>
